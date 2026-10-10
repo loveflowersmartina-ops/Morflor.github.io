@@ -476,4 +476,55 @@ catalogo.forEach((p,i)=>{const card=document.createElement('article');card.class
 document.getElementById('contactForm').addEventListener('submit',e=>{e.preventDefault();const name=document.getElementById('name').value.trim(),email=document.getElementById('email').value.trim(),subject=document.getElementById('subject').value.trim()||'Consulta desde la web Morflor',message=document.getElementById('message').value.trim();const body=`Nombre: ${name}\nCorreo: ${email}\n\n${message}`;location.href='mailto:CAMBIAR-POR-CORREO-REAL?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body)});
 document.getElementById('menuBtn').addEventListener('click',()=>document.getElementById('navLinks').classList.toggle('open'));document.querySelectorAll('#navLinks a').forEach(a=>a.addEventListener('click',()=>document.getElementById('navLinks').classList.remove('open')));document.getElementById('year').textContent=new Date().getFullYear();applyLanguage('es');
 </script>
+              
+const gallery = document.getElementById("productGallery");
+const prevButton = document.querySelector(".gallery-arrow.prev");
+const nextButton = document.querySelector(".gallery-arrow.next");
+const galleryStatus = document.getElementById("galleryStatus");
+
+function scrollGallery(direction) {
+    const card = gallery.querySelector(".product-card");
+
+    if (!card) return;
+
+    const styles = getComputedStyle(gallery);
+    const gap = parseFloat(styles.columnGap) || 0;
+    const distance = card.getBoundingClientRect().width + gap;
+
+    gallery.scrollBy({
+        left: direction * distance,
+        behavior: "smooth"
+    });
+}
+
+prevButton.addEventListener("click", () => {
+    scrollGallery(-1);
+});
+
+nextButton.addEventListener("click", () => {
+    scrollGallery(1);
+});
+
+function updateGallery() {
+    const maxScroll = gallery.scrollWidth - gallery.clientWidth;
+
+    prevButton.disabled = gallery.scrollLeft <= 2;
+    nextButton.disabled = gallery.scrollLeft >= maxScroll - 2;
+
+    if (galleryStatus) {
+        galleryStatus.textContent =
+            maxScroll <= 2
+                ? "Toda la colección está visible"
+                : "Desliza o utiliza las flechas para descubrir más";
+    }
+}
+
+gallery.addEventListener("scroll", updateGallery, {
+    passive: true
+});
+
+window.addEventListener("resize", updateGallery);
+
+updateGallery();
+
 </body></html>
