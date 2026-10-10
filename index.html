@@ -38,6 +38,202 @@ section{padding:60px 0}.section-head{text-align:center;margin-bottom:28px}.secti
     position: static;
 }
 
+/* GALERÍA DE PRODUCTOS MORFLOR */
+
+.gallery-section {
+    padding: 80px 0;
+    overflow: hidden;
+}
+
+.gallery-section .section-head {
+    margin-bottom: 36px;
+    text-align: center;
+}
+
+.gallery-section .eyebrow {
+    color: #526754;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+}
+
+.gallery-section .section-head h2 {
+    margin: 12px 0;
+    font-family: Georgia, serif;
+    font-size: clamp(30px, 4vw, 44px);
+    font-weight: 400;
+}
+
+.gallery-wrapper {
+    position: relative;
+    padding: 0 4px;
+}
+
+.product-gallery {
+    display: grid;
+    grid-auto-columns: calc((100% - 72px) / 4);
+    grid-auto-flow: column;
+    gap: 24px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    overscroll-behavior-x: contain;
+    scrollbar-width: thin;
+    scrollbar-color: #405744 #e8e4dc;
+    padding: 0 0 18px;
+}
+
+.product-gallery::-webkit-scrollbar {
+    height: 6px;
+}
+
+.product-gallery::-webkit-scrollbar-track {
+    background: #e8e4dc;
+    border-radius: 10px;
+}
+
+.product-gallery::-webkit-scrollbar-thumb {
+    background: #405744;
+    border-radius: 10px;
+}
+
+.product-card {
+    min-width: 0;
+    overflow: hidden;
+    scroll-snap-align: start;
+    border: 1px solid #e5e0d7;
+    border-radius: 14px;
+    background: #fffdfa;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.035);
+    transition: transform 0.25s ease,
+                box-shadow 0.25s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+}
+
+.product-card img {
+    display: block;
+    width: 100%;
+    height: 235px;
+    object-fit: cover;
+}
+
+.product-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-height: 170px;
+    padding: 20px;
+}
+
+.product-info h3 {
+    margin: 0 0 8px;
+    font-family: Georgia, serif;
+    font-size: 23px;
+    font-weight: 400;
+}
+
+.product-info p {
+    margin: 0 0 22px;
+    color: #6e706b;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.product-info strong {
+    margin-top: auto;
+    font-size: 16px;
+}
+
+.gallery-arrow {
+    position: absolute;
+    z-index: 2;
+    top: 42%;
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border: 1px solid #e5e0d7;
+    border-radius: 50%;
+    background: #fffdfa;
+    color: #344b39;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px #00000012;
+    transition: background 0.2s, color 0.2s;
+}
+
+.gallery-arrow:hover {
+    background: #405744;
+    color: white;
+}
+
+.gallery-arrow.prev {
+    left: -18px;
+}
+
+.gallery-arrow.next {
+    right: -18px;
+}
+
+.gallery-progress {
+    margin-top: 14px;
+    color: #77776f;
+    text-align: center;
+    font-size: 12px;
+    letter-spacing: 0.4px;
+}
+
+/* TABLETAS */
+@media (max-width: 1000px) {
+    .product-gallery {
+        grid-auto-columns: calc((100% - 24px) / 2);
+        gap: 24px;
+    }
+
+    .gallery-arrow.prev {
+        left: 8px;
+    }
+
+    .gallery-arrow.next {
+        right: 8px;
+    }
+}
+
+/* MÓVILES */
+@media (max-width: 560px) {
+    .gallery-section {
+        padding: 55px 0;
+    }
+
+    .product-gallery {
+        grid-auto-columns: 82%;
+        gap: 16px;
+    }
+
+    .product-card img {
+        height: 230px;
+    }
+
+    .product-info {
+        min-height: 155px;
+        padding: 17px;
+    }
+
+    .product-info h3 {
+        font-size: 21px;
+    }
+
+    .gallery-arrow {
+        width: 36px;
+        height: 36px;
+        font-size: 20px;
+    }
+}
+
 </style>
 </head>
 <body>
@@ -55,10 +251,121 @@ section{padding:60px 0}.section-head{text-align:center;margin-bottom:28px}.secti
 </section>
 <section id="tienda">
   <div class="wrap"><div class="section-head"><h2>Colección de temporada</h2><div class="rule"></div><p data-i18n="catalogText">Descubre prendas esenciales para cada momento.</p></div>
-  <div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin:0 0 30px">
-    <a class="btn secondary" href="#tienda">Mujer</a><a class="btn secondary" href="#tienda">Cinturones</a><a class="btn secondary" href="#tienda">Bolsos</a><a class="btn secondary" href="#tienda">Accesorios</a>
+
+<section id="tienda" class="gallery-section">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">COLECCIÓN DE TEMPORADA</p>
+      <h2>Descubre Morflor</h2>
+      <p>Prendas seleccionadas para acompañarte cada día.</p>
+    </div>
+
+    <div class="gallery-wrapper">
+      <button class="gallery-arrow prev"
+              aria-label="Ver productos anteriores"
+              type="button">←</button>
+
+      <div class="product-gallery" id="productGallery">
+
+        <article class="product-card">
+          <img src="imagenes/jersey-oversize.jpg"
+               alt="Jersey oversize beige"
+               loading="lazy">
+          <div class="product-info">
+            <h3>Jersey Oversize</h3>
+            <p>Punto suave para un look relajado.</p>
+            <strong>29,90 €</strong>
+          </div>
+        </article>
+
+        <article class="product-card">
+          <img src="imagenes/chaqueta-ligera.jpg"
+               alt="Chaqueta ligera negra"
+               loading="lazy">
+          <div class="product-info">
+            <h3>Chaqueta Ligera</h3>
+            <p>Una capa versátil para cada día.</p>
+            <strong>49,90 €</strong>
+          </div>
+        </article>
+
+        <article class="product-card">
+          <img src="imagenes/pantalon-wide-leg.jpg"
+               alt="Pantalón wide leg"
+               loading="lazy">
+          <div class="product-info">
+            <h3>Pantalón Wide Leg</h3>
+            <p>Corte cómodo y estilo atemporal.</p>
+            <strong>34,90 €</strong>
+          </div>
+        </article>
+
+        <article class="product-card">
+          <img src="imagenes/jersey-rayas.jpg"
+               alt="Jersey de rayas"
+               loading="lazy">
+          <div class="product-info">
+            <h3>Jersey de Rayas</h3>
+            <p>Un básico fácil de combinar.</p>
+            <strong>27,90 €</strong>
+          </div>
+        </article>
+
+              <article class="product-card">
+          <img src="imagenes/jersey-rayas.jpg"
+               alt="Jersey de rayas"
+               loading="lazy">
+          <div class="product-info">
+            <h3>Jersey de Rayas</h3>
+            <p>Un básico fácil de combinar.</p>
+            <strong>27,90 €</strong>
+          </div>
+        </article>
+              <article class="product-card">
+          <img src="imagenes/jersey-rayas.jpg"
+               alt="Jersey de rayas"
+               loading="lazy">
+          <div class="product-info">
+            <h3>Jersey de Rayas</h3>
+            <p>Un básico fácil de combinar.</p>
+            <strong>27,90 €</strong>
+          </div>
+        </article>
+              <article class="product-card">
+          <img src="imagenes/jersey-rayas.jpg"
+               alt="Jersey de rayas"
+               loading="lazy">
+          <div class="product-info">
+            <h3>Jersey de Rayas</h3>
+            <p>Un básico fácil de combinar.</p>
+            <strong>27,90 €</strong>
+          </div>
+        </article>
+              <article class="product-card">
+          <img src="imagenes/jersey-rayas.jpg"
+               alt="Jersey de rayas"
+               loading="lazy">
+          <div class="product-info">
+            <h3>Jersey de Rayas</h3>
+            <p>Un básico fácil de combinar.</p>
+            <strong>27,90 €</strong>
+          </div>
+        </article>
+        <!-- Duplica este article para añadir más prendas -->
+
+      </div>
+
+      <button class="gallery-arrow next"
+              aria-label="Ver productos siguientes"
+              type="button">→</button>
+    </div>
+
+    <div class="gallery-progress">
+      <span id="galleryStatus">Desliza para descubrir la colección</span>
+    </div>
   </div>
-  <div class="products" id="products"></div></div>
+</section>
+
 </section>
 <section class="season" id="paradas">
   <div class="wrap location-grid">
